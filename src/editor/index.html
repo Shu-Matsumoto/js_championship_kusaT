@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Web Editor</title>
+    <!--GrapesjsのCSS読込-->
+    <link
+      rel="stylesheet"
+      href="//unpkg.com/grapesjs/dist/css/grapes.min.css"
+    />
+    <!--GrapesjsのScript読込-->
+    <script src="//unpkg.com/grapesjs"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ここにGrapesJSのエディタが表示される -->
+    <div class="headerArea">
+      <div class="editTargetInformationArea">編集ターゲット情報を配置予定</div>
+      <div class="controlMenuArea">メニューを配置予定</div>
+    </div>
+    <div class="mainArea">
+      <div class="editorPanel">
+        <div id="grapesjsCanvas"></div>
+      </div>
+    </div>
+    <div class="footerArea">
+      <div class="productInformationArea">プロダクト情報を配置予定</div>
+    </div>
+    <div class="miniPanel">
+      <div id="blocks"></div>
+    </div>
+    <script>
+      //GrapesJSの初期化処理
+      const editor = grapesjs.init({
+        // Indicate where to init the editor. You can also pass an HTMLElement
+        container: "#grapesjsCanvas",
+        // Get the content for the canvas directly from the element
+        // As an alternative we could use: `components: '<h1>Hello World Component!</h1>'`,
+        // エレメントから直接canvasコンテンツを取得する設定
+        fromElement: true,
+        // Size of the editor
+        height: "75vh",
+        width: "auto",
+        // Disable the storage manager for the moment
+        storageManager: false,
+        // Avoid any default panel
+        panels: { defaults: [] },
+        blockManager: {
+          appendTo: "#blocks",
+          custom: true,
+          blocks: [],
+        },
+      });
+
+      //============================= BlockManagerにブロック追加=============================//
+      // セクション
+      editor.BlockManager.add("section-block", {
+        label: "S", // You can use HTML/SVG inside labels
+        attributes: { class: "gjs-block-section" },
+        content: `<section>
+          <h1>This is a simple title</h1>
+          <div>This is just a Lorem text: Lorem ipsum dolor sit amet</div>
+        </section>`,
+      });
+      // テキスト
+      editor.BlockManager.add("text-block", {
+        label: "T",
+        content: '<div data-gjs-type="text">Insert your text here</div>',
+      });
+      // 画像
+      editor.BlockManager.add("image-block", {
+        label: "I",
+        // Select the component once it's dropped
+        select: true,
+        // You can pass components as a JSON instead of a simple HTML string,
+        // in this case we also use a defined component type `image`
+        content: { type: "image" },
+        // This triggers `active` event on dropped components and the `image`
+        // reacts by opening the AssetManager
+        activate: true,
+      });
+      //============================= BlockManagerにブロック追加=============================//
+    </script>
+  </body>
+</html>
