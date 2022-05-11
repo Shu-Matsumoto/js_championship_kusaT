@@ -1,18 +1,9 @@
-# プロダクトのタイトル
+Piskel Embed example
+====================
 
-- デプロイ先の URL
+Simple showcase demonstrating how to integrate a [Piskel](https://github.com/juliandescottes/piskel) editor in an existing website.
 
-## プロダクトの紹介
-
-## -テストコミット松本
-
-## 工夫した点，こだわった点
-
--
--
--
-
-## 苦戦した点，共有したいハマりポイントなど
-
--
--
+This example should demonstrate : 
+- how to embed a custom version of the standalone Piskel editor in an iFrame
+- how to load sprites
+- how to save sprites
