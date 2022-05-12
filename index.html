@@ -1,21 +1,91 @@
-<html>
+<!DOCTYPE html>
+<html lang="ja">
 <head>
-  <title>Embedded Piskel editor</title>
+  <title>Main Page</title>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Sample</title>
+    <!-- BootstrapのCSS読み込み -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery読み込み -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- BootstrapのJS読み込み -->
+    <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-  <div class="sidebar">
-    <h3 class="sidebar-title">My sprites !</h3>
-    <ul>
-      <li class="sidebar-menuitem" data-sprite="megaman">Load Megaman</li>
-      <li class="sidebar-menuitem" data-sprite="sonic">Load Sonic</li>
-      <li class="sidebar-menuitem" data-sprite="mario">Load Mario</li>
-    </ul>
+
+
+  <div class="p-2 mb-2 bg-dark text-white fs-2 fst-italic"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter-left" viewBox="0 0 16 16">
+    <path d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+  </svg>'SYNERGY WEED®</div>
+  
+  <div class="border">
+    ---------------------------------------------------------
+</div>
+  <div id="nftdone" class="input-group mb-3 m-4">
+    <input type="text" aria-describedby="basic-addon2">
+    <span class="input-group-text fst-italic" id="basic-addon2">NAS</span>
   </div>
+
+
+  <div class="border">
+    ---------------------------------------------------------
+</div>
+
+
+<style>
+  label > input {
+  display:none; /* アップロードボタンのスタイルを無効にする */
+  }
+  label {
+  color: #111010; /* ラベルテキストの色を指定する */
+  background-color: #11ce53;/* ラベルの背景色を指定する */
+  padding: 10px; /* ラベルとテキスト間の余白を指定する */
+  border: double 4px #95f89b;/* ラベルのボーダーを指定する */
+  }
+  </style>
+
+<!-- <a href="https://gsacademy.jp"> -->
+<a href="https://gsacademy.jp"
+  target="_blank"
+  rel="noopener"
+>
+  <body>
+    <label for="file_upload"> 
+    -Press and it's done make your NFT!-
+    <input type="file" id="file_upload">
+    </label>
+  </body>
+  </html>
+</a>
+
+  <!-- <div class="mb-3">
+  
+  <input type="file" class="form-control-file" id="file1">
+</div>
+
+<button type="submit" class="btn btn-primary">Press and it's done NFT</button>
+</form> -->
+
+
+
   <div class="editor-container">
     <iframe class="editor-frame" src="editor/index.html"></iframe>
   </div>
 
   <script type="text/javascript" src="script.js"></script>
+
+
+
+
+
+
+<!-- save実行動作 -->
+<!-- <div data-setting="save" class="tool-icon save-icon" rel="tooltip" data-placement="left" data-original-title="<span style='color:gold'>SAVE</span></br>Save to your gallery, save locally<br/>or export as a file">
+</div> -->
+
+
 </body>
 </html>
