@@ -1,122 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<title>Login V4</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-<!--===============================================================================================-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Signin form
+    </title>
+    <!-- GOOGLE FONT -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
+    <!-- BOXICONS -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <!-- APP CSS -->
+    <link rel="stylesheet" href="./app.css">
 </head>
-<body>
-	
-	<div class="limiter">
-		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
-			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form class="login100-form validate-form">
-					<span class="login100-form-title p-b-49">
-						Login
-					</span>
 
-					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
-						<span class="label-input100">Username</span>
-						<input class="input100" type="text" name="username" placeholder="Type your username">
-						<span class="focus-input100" data-symbol="&#xf206;"></span>
-					</div>
+<!-- <body style="background-image: url(./images/gettyimages-1020832050-1.webp);"> -->
 
-					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<span class="label-input100">Password</span>
-						<input class="input100" type="password" name="pass" placeholder="Type your password">
-						<span class="focus-input100" data-symbol="&#xf190;"></span>
-					</div>
-					
-					<div class="text-right p-t-8 p-b-31">
-						<a href="#">
-							Forgot password?
-						</a>
-					</div>
-					
-					<div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">
-								Login
-							</button>
-						</div>
-					</div>
+    <div class="form" id="signin-form">
+        <a href="#" class="form-logo">
+            <img src="../images/1.png" alt="company logo">
+        </a>
+        <div class="form-group">
+            <input type="email" class="form-input" placeholder="Email" id="signin-email">
+            <span class="form-input-icon err">
+                <i class='bx bx-error-circle'></i>
+            </span>
+            <span class="form-input-icon success">
+                <i class='bx bx-check-circle'></i>
+            </span>
+            <span class="form-input-err-msg" data-err-for="signin-email"></span>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-input" placeholder="Password" id="signin-password">
+            <span class="form-input-icon err">
+                <i class='bx bx-error-circle'></i>
+            </span>
+            <span class="form-input-icon success">
+                <i class='bx bx-check-circle'></i>
+            </span>
+            <span class="form-input-err-msg" data-err-for="signin-password"></span>
+        </div>
+        <div class="form-group form-group-checkbox">
+            <input type="checkbox" name="remember" id="remember" checked="checked">
+            <label for="remember">
+                Remember Me
+                <i class='bx bx-check'></i>
+            </label>
+        </div>
+        <button class="form-btn" id="signin-btn">Sign in</button>
+        <span class="form-delimiter">
+            or connect with
+        </span>
+        <div class="form-social">
+            <a href="#" class="form-social-item fb">
+                <i class='bx bxl-facebook'></i>
+            </a>
+            <a href="#" class="form-social-item tw">
+                <i class='bx bxl-twitter'></i>
+            </a>
+            <a href="#" class="form-social-item gg">
+                <i class='bx bxl-google'></i>
+            </a>
+        </div>
+        <span class="form-txt">
+            Don't have an account?
+            <a href="#">Sign up!</a>
+        </span>
+        <span class="form-txt">
+            <a href="#">Forgot password?</a>
+        </span>
+    </div>
 
-					<div class="txt1 text-center p-t-54 p-b-20">
-						<span>
-							Or Sign Up Using
-						</span>
-					</div>
+    <!-- APP JS -->
+    <script src="./app.js"></script>
 
-					<div class="flex-c-m">
-						<a href="#" class="login100-social-item bg1">
-							<i class="fa fa-facebook"></i>
-						</a>
-
-						<a href="#" class="login100-social-item bg2">
-							<i class="fa fa-twitter"></i>
-						</a>
-
-						<a href="#" class="login100-social-item bg3">
-							<i class="fa fa-google"></i>
-						</a>
-					</div>
-
-					<div class="flex-col-c p-t-155">
-						<span class="txt1 p-b-17">
-							Or Sign Up Using
-						</span>
-
-						<a href="#" class="txt2">
-							Sign Up
-						</a>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	
-
-	<div id="dropDownSelect1"></div>
-	
-<!--===============================================================================================-->
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/daterangepicker/moment.min.js"></script>
-	<script src="vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-	<script src="js/main.js"></script>
+    <html>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jquery.mb.YTPlayer/3.3.9/css/jquery.mb.YTPlayer.min.css">
+    <div id="ytPlayer" data-property="{
+            videoURL: 'https://www.youtube.com/watch?v=z1_X86D34Q0',
+            autoPlay: true,
+            loop: 1,
+            mute: true,
+            showControls: false,
+            showYTLogo: false,
+        }">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mb.YTPlayer/3.3.9/jquery.mb.YTPlayer.min.js"></script>
+        <script>
+            $(function () {
+                $("#ytPlayer").YTPlayer();
+            });
+        </script>
+    
+    </html>
 
 </body>
+
 </html>
