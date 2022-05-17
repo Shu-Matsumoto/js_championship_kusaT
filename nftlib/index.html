@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>artNFT</title>
+  </head>
+  <body>
+    <h1>Art NFT</h1>
+    <div class="header"></div>
+    <div class="main">
+      <div>
+        <button class="nftOpeButton" id="nftOpeButtonStoreData">
+          Store data
+        </button>
+        <button class="nftOpeButton" id="nftOpeButtonMint">Mint</button>
+        <button class="nftOpeButton" id="nftOpeButtonGet">Get</button>
+        <button class="nftOpeButton" id="nftOpeButtonTransfer">Transfer</button>
+      </div>
+    </div>
+    <div class="footer"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- axiosライブラリの読み込み -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="module">
+      import {
+        MATSU_WALLET_ADDRESS,
+        SAMPLE_DATA_TOKENURL,
+      } from "./js/appDataDef.js";
+
+      $("#nftOpeButtonStoreData").on("click", () => {
+        axios
+          .get("http://localhost:3000/store-metadata", {
+            params: {
+              name: "testname",
+              description: "testdescription",
+              imageFile: "hokusai.png",
+              imageType: "image/png",
+            },
+          })
+          .then(function (response) {
+            console.log(response);
+          });
+      });
+
+      $("#nftOpeButtonMint").on("click", () => {
+        axios
+          .get("http://localhost:3000/mint", {
+            params: {
+              walletAddress: MATSU_WALLET_ADDRESS,
+              tokenURL: SAMPLE_DATA_TOKENURL,
+            },
+          })
+          .then(function (response) {
+            console.log(response);
+          });
+      });
+      $("#nftOpeButtonGet").on("click", () => {
+        axios
+          .get("http://localhost:3000/get", {
+            params: {
+              // ここにクエリパラメータを指定する
+              tokenId: 0,
+            },
+          })
+          .then(function (response) {
+            console.log(response);
+          });
+      });
+      $("#nftOpeButtonTransfer").on("click", () => {
+        axios
+          .get("http://localhost:3000/transfer", {
+            params: {
+              to: MATSU_WALLET_ADDRESS,
+              tokenId: 0,
+            },
+          })
+          .then(function (response) {
+            console.log(response);
+          });
+      });
+    </script>
+  </body>
+</html>

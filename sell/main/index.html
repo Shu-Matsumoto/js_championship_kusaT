@@ -25,7 +25,7 @@
     ---------------------------------------------------------
 </div>
   <div id="nftdone" class="input-group mb-3 m-4">
-    <input type="text" aria-describedby="basic-addon2">
+    <input type="text" aria-describedby="basic-addon2" id="input_nas">
     <span class="input-group-text fst-italic" id="basic-addon2">NAS</span>
   </div>
 
@@ -85,8 +85,119 @@
     <iframe class="editor-frame" src="editor/index.html"></iframe>
   </div>
 
-  <script type="text/javascript" src="script.js"></script>
+  <!--<script type="text/javascript" src="script.js"></script>-->
+  <!-- axiosライブラリの読み込み -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!--Firebase関連処理-->
+  <script type="module">
+  import { FbConfig } from "../../firebase/configData.js";
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+  import {
+    getFirestore,
+    collection,
+    addDoc,
+    serverTimestamp,
+   } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js";
 
+   import {
+    getStorage, 
+    ref,
+    uploadBytes,
+   } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-storage.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: FbConfig.FB_ApiKey,
+    authDomain: FbConfig.FB_AuthDomain,
+    projectId: FbConfig.FB_ProjectId,
+    storageBucket: FbConfig.FB_StorageBucket,
+    messagingSenderId: FbConfig.FB_MessagingSenderId,
+    appId: FbConfig.FB_AppId
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
+  // DB I/F取得
+  const db = getFirestore(app);
+  // STORAGE I/F取得
+  const storage = getStorage(app);
+
+  // 指定したデータファイルをnft.strageへupload
+  async function uploadDataToNftStrage(fileName, description, imageData, imageType){
+    let res = await axios.get("http://localhost:3000/store-metadata", {
+        params: {
+          name: fileName,
+          description: description,
+          imageFile: "hokusai.png",
+          imageType: "image/png",
+        },
+    });
+    return res.data;
+  }
+
+  // nft.strageへuploadした管理情報をfirebaseへpost
+  function postDataToFirebase(fileName, urlOfStrage, nas){
+    console.log(urlOfStrage);
+    const data = {
+      dataName: fileName,
+      nas: nas,
+      nfturl: urlOfStrage,
+      time: serverTimestamp(),
+    };
+    addDoc(collection(db, "NFTManageTable"), data);
+  }
+
+  // upload対象ファイル選択イベントハンドラ
+  const input_file = document.getElementById("file_upload");
+  input_file.addEventListener('change', (e) => {
+    if (input_file.files.length != 0){
+      // 設定したNAS値を取得
+      let nas = Number($("#input_nas").val());
+      console.log(nas);
+
+      // ファイルの読み込み
+      let file_reader = new FileReader();
+      file_reader.readAsDataURL(e.target.files[0]);
+      // ファイルの読み込みが完了したら実行
+      file_reader.addEventListener('load', function(e2) {
+
+        // JSONにするデータを作成（この時点ではObject形式）
+        let imgData = {
+          title: "Bear",
+          image: e2.target.result,
+          post_date: "2021-04-01"
+        };
+        //console.log(imgData);
+
+        let imgName = e.target.files[0].name;
+        let imgFile = e.target.files[0];
+        const storageRef = ref(storage, `image/${imgName}`);
+        // fireStorageへupload
+        uploadBytes(storageRef, imgFile).then(() => {
+          console.log('uploaded success,' +  imgName);        
+        })
+        .catch(function (error) {
+          // リクエスト失敗時の処理（errorにエラー内容が入っている）
+          console.log('uploaded fail,' +  imgName);  
+          console.log(error);
+        });
+
+        // nft.storageへデータupload
+        uploadDataToNftStrage(imgName, imgName, imgData, "image/png").then(strageUrl => {
+          // nft.storageから応答してもらったurlと画像をセットでfire storageへデータupload
+          console.log("uploaded to nft storage success");
+          postDataToFirebase(`image/${imgName}`, strageUrl, nas);
+        });
+      });
+    }else{
+      console.log("file is not selected.");
+    }
+  })
+</script>
 
 
   <html>
